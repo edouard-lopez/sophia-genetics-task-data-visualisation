@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from app.feeder import Feeder
+from app.json_parser import JsonParser
 
 app = FastAPI()
 
@@ -18,6 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def read_root():
     return {"Hello": "World"}
@@ -25,20 +26,22 @@ def read_root():
 
 @app.get("/user-usage")
 def user_usage():
-    return Feeder().user_usage()
+    return JsonParser().user_usage()
+
 
 @app.get("/domain-x")
 def domainX():
-    return Feeder().domainX()
+    return JsonParser().domainX()
+
 
 @app.get("/domain-y")
 def domainY():
-    return Feeder().domainY()
+    return JsonParser().domainY()
+
 
 @app.get("/categories-y")
 def categoriesY():
-    return Feeder().categoriesY()
-
+    return JsonParser().categoriesY()
 
 
 @app.get("/items/{item_id}")

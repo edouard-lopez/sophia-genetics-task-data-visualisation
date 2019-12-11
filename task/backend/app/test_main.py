@@ -9,6 +9,7 @@ def test_read_root():
     assert response.status_code == 200
     assert response.json() == {"Hello": "World"}
 
+
 def test_read_user_usage():
     response = client.get("/user-usage")
     assert response.status_code == 200
@@ -30,5 +31,5 @@ def test_read_domainY():
 def test_read_categoriesY():
     response = client.get("/categories-y")
     assert response.status_code == 200
-    assert response.json() == 'Client'
+    assert response.json() == "Client"
 

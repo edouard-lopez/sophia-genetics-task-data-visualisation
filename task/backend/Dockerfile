@@ -7,3 +7,4 @@ RUN pip3 install \
     starlette
 
 COPY ./app /app
+RUN python ./db_creator.py
