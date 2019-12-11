@@ -4,7 +4,8 @@ WORKDIR /app
 
 ENV PATH /app/node_modules/.bin:$PATH
 
-COPY yarn.lock /app/yarn.lock
+COPY yarn.lock /app/
+COPY package.json /app/
 RUN yarn install --frozen-lockfile
 
 CMD ["yarn", "start"]
