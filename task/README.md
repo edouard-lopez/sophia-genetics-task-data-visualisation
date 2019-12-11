@@ -31,28 +31,16 @@ In the project directory `task/`, you can run:
 ### Run
 
     make serve-backend
-
-### Demo
+    make serve-frontend
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-    yarn install # first time only
-    yarn start
 
 ### Tests
 
 #### Front
 
-    yarn test
+    make test-frontend
 
 #### Backend
 
     make test-backend
-
-### Production
-
-    yarn build
-
-Bundles the app for production and optimizes for the best performance.
-App is ready to be deployed!
-
