@@ -28,6 +28,12 @@
 
 In the project directory `task/`, you can run:
 
+### Run
+
+    cd backend/
+    docker build -t myimage .
+    docker run -d --name mycontainer -p 80:80 myimage
+
 ### Demo
 
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
