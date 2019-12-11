@@ -8,7 +8,7 @@
 
 ## Onboarding
 
-In the project directory `task/`, you can run:
+In the project directory, you can run:
 
 ### Run
 
