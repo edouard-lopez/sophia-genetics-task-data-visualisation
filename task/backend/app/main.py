@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from app.json_parser import JsonParser
+from app.db_provider import DBProvider
 
 app = FastAPI()
 
@@ -26,22 +27,22 @@ def read_root():
 
 @app.get("/user-usage")
 def user_usage():
-    return JsonParser().user_usage()
+    return DBProvider().user_usage()
 
 
 @app.get("/domain-x")
 def domainX():
-    return JsonParser().domainX()
+    return DBProvider().domainX()
 
 
 @app.get("/domain-y")
 def domainY():
-    return JsonParser().domainY()
+    return DBProvider().domainY()
 
 
 @app.get("/categories-y")
 def categoriesY():
-    return JsonParser().categoriesY()
+    return DBProvider().categoriesY()
 
 
 @app.get("/items/{item_id}")

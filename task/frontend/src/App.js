@@ -16,8 +16,8 @@ const prepare = (range, data) =>
   range.map((date, index) => {
     return {
       x: date,
-      actual: data.actualUsage[index],
-      predicted: data.predictedUsage[index]
+      actual: data.actual_usage[index],
+      predicted: data.predicted_usage[index]
     };
   });
 
@@ -32,13 +32,14 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.setState({ isLoading: true });
-    try {
-      const response = await axios.get("http://localhost/domain-x");
-      this.setState({ domainX: response.data, isLoading: false });
-    } catch (error) {
-      this.setState({ error, isLoading: false });
-    }
+    this.setState({
+      isLoading: true,
+      domainX: {
+        from: "04-2016",
+        to: "03-2017"
+      }
+    });
+
     try {
       const response = await axios.get("http://localhost/user-usage");
       this.setState({ userData: response.data, isLoading: false });
@@ -60,7 +61,7 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <div className="container">
-            <UserUsageGraph data={prepare(dateRange(from, to), userData[0])} />
+            <UserUsageGraph data={prepare(dateRange(from, to), userData[1])} />
           </div>
         </div>
       </div>

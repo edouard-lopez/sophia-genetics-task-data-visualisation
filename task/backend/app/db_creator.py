@@ -1,24 +1,9 @@
 import sqlite3
 from sqlite3 import Error
-import os
 
-# # from pprint import pprint
 
 from json_parser import JsonParser
-
-
-def create_connection(db_file):
-    """ create a database connection to the SQLite database
-        specified by db_file
-    :param db_file: database file
-    :return: Connection object or None
-    """
-    connection = None
-    try:
-        connection = sqlite3.connect(db_file)
-        return connection
-    except Error as e:
-        print(e)
+from db_provider import DBProvider
 
 
 def create_table(connection, create_table_sql):
@@ -48,10 +33,9 @@ def insert_users_usage(connection, user_usage):
             "predictedUsage": str(usage.get("predictedUsage")),  # ugly trick
             "actualUsage": str(usage.get("actualUsage")),
         }
-        # pprint(new_usage)
         cursor.execute(
             """ 
-                INSERT OR IGNORE INTO user_usage(predicted_usage,actual_usage,salesforce_id)
+                INSERT OR IGNORE INTO user_usage(salesforce_id,predicted_usage,actual_usage)
                 VALUES(:salesforceId, :predictedUsage, :actualUsage)
             """,
             new_usage,
@@ -100,12 +84,8 @@ def setup_tables(connection):
 
 
 if __name__ == "__main__":
-    CURRENT_DIRECTORY = os.path.realpath(
-        os.path.join(os.getcwd(), os.path.dirname(__file__))
-    )
-    DB_FILE = os.path.join(CURRENT_DIRECTORY, "data.db")
+    connection = DBProvider().connection
 
-    connection = create_connection(DB_FILE)
     with connection:
         setup_tables(connection)
         insert_users(connection, JsonParser().domainY())
