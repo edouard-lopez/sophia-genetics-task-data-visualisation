@@ -1,5 +1,7 @@
 # User Usage Evolution Dataviz
 
+![screenshot](screenshot.png)
+
 * The database will be provisioned automatically it for you.
 * Frontend display only first user data.
 * Choosed a line chart in order to
